@@ -2,24 +2,13 @@ package cake;
 
 import java.util.*;
 
-class Ingredient {
-	private String name;
-	private String code;
-	private double unit_price;
-	private double unit_kcal;
-	private double time_multiplier;
-	private boolean is_green;
+abstract class Item {
+	protected String name;
+	protected String code;
 	
-	Ingredient(String name, String code, double unit_price, double unit_kcal, double time_multiplier, boolean is_green) {
+	Item(String name, String code) {
 		this.name = name;
 		this.code = code;
-		this.unit_price = unit_price;
-		this.unit_kcal = unit_kcal;
-		this.time_multiplier = time_multiplier;
-		this.is_green = is_green;
-	}
-	Ingredient(String name, String code, double unit_price, double unit_kcal, double time_multiplier) {
-		this(name, code, unit_price, unit_kcal, time_multiplier, false);
 	}
 	
 	String get_name() {
@@ -28,6 +17,27 @@ class Ingredient {
 	String get_code() {
 		return this.code;
 	}
+	abstract String info();
+	abstract String detail();
+}
+
+class Ingredient extends Item {
+	private double unit_price;
+	private double unit_kcal;
+	private double time_multiplier;
+	private boolean is_green;
+	
+	Ingredient(String name, String code, double unit_price, double unit_kcal, double time_multiplier, boolean is_green) {
+		super(name, code);
+		this.unit_price = unit_price;
+		this.unit_kcal = unit_kcal;
+		this.time_multiplier = time_multiplier;
+		this.is_green = is_green;
+	}
+	Ingredient(String name, String code, double unit_price, double unit_kcal, double time_multiplier) {
+		this(name, code, unit_price, unit_kcal, time_multiplier, false);
+	}
+
 	double get_unit_price() {
 		return this.unit_price;
 	}
@@ -60,9 +70,7 @@ class Ingredient {
 	}
 }
 
-class Mold {
-	private String name;
-	private String code;
+class Mold extends Item {
 	private String shape;
 	private double area;
 	private double width;
@@ -70,8 +78,7 @@ class Mold {
 	private double time;
 	
 	Mold(String name, String code, String shape, double area, double width, double height, double time) {
-		this.name = name;
-		this.code = code;
+		super(name, code);
 		this.shape = shape;
 		this.area = area;
 		this.width = width;
@@ -79,12 +86,6 @@ class Mold {
 		this.time = time;
 	}
 	
-	String get_name() {
-		return this.name;
-	}
-	String get_code() {
-		return this.code;
-	}
 	String get_shape() {
 		return this.shape;
 	}
@@ -114,9 +115,7 @@ class Mold {
 	}
 }
 
-class Cake {
-	private String name;
-	private String code;
+class Cake extends Item {
 	private boolean is_complete;
 	private int price;
 	private double kcal;
@@ -128,8 +127,7 @@ class Cake {
 	private ArrayList<Ingredient> decoration;
 	
 	Cake() {
-		this.name = "";
-		this.code = "";
+		super("", "");
 		this.is_complete = false;
 		this.price = 0;
 		this.kcal = 0;
