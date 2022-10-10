@@ -52,19 +52,19 @@ class Ingredient extends Item {
 	}
 	String info() {
 		if (this.is_green) {
-			return String.format("%s (%.2f ¿ø, %.2f Kcal, x%.2f ÇÊ¿ä, Ä£È¯°æ)",
+			return String.format("%s (%.2f ì›, %.2f Kcal, x%.2f í•„ìš”, ì¹œí™˜ê²½)",
 					this.name, this.unit_price, this.unit_kcal, this.time_multiplier);
 		} else {
-			return String.format("%s (%.2f ¿ø, %.2f Kcal, x%.2f ÇÊ¿ä)",
+			return String.format("%s (%.2f ì›, %.2f Kcal, x%.2f í•„ìš”)",
 					this.name, this.unit_price, this.unit_kcal, this.time_multiplier);
 		}
 	}
 	String detail() {
 		if (this.is_green) {
-			return String.format("Àç·á ÀÌ¸§: %s\n´ÜÀ§ °¡°İ: %.2f ¿ø\n´ÜÀ§ ¿­·®: %.2f Kcal\nÇÊ¿ä ½Ã°£: x%.2f\nÄ£È¯°æ: ¿¹\n",
+			return String.format("ì¬ë£Œ ì´ë¦„: %s\në‹¨ìœ„ ê°€ê²©: %.2f ì›\në‹¨ìœ„ ì—´ëŸ‰: %.2f Kcal\ní•„ìš” ì‹œê°„: x%.2f\nì¹œí™˜ê²½: ì˜ˆ\n",
 					this.name, this.unit_price, this.unit_kcal, this.time_multiplier);
 		} else {
-			return String.format("Àç·á ÀÌ¸§: %s\n´ÜÀ§ °¡°İ: %.2f ¿ø\n´ÜÀ§ ¿­·®: %.2f Kcal\nÇÊ¿ä ½Ã°£: x%.2f\nÄ£È¯°æ: ¾Æ´Ï¿À\n",
+			return String.format("ì¬ë£Œ ì´ë¦„: %s\në‹¨ìœ„ ê°€ê²©: %.2f ì›\në‹¨ìœ„ ì—´ëŸ‰: %.2f Kcal\ní•„ìš” ì‹œê°„: x%.2f\nì¹œí™˜ê²½: ì•„ë‹ˆì˜¤\n",
 					this.name, this.unit_price, this.unit_kcal, this.time_multiplier);
 		}
 	}
@@ -105,11 +105,11 @@ class Mold extends Item {
 		return this.area * this.height;
 	}
 	String info() {
-		return String.format("%s (%.2fx%.2f %s, %.2fºĞ ÇÊ¿ä)",
+		return String.format("%s (%.2fx%.2f %s, %.2fë¶„ í•„ìš”)",
 					this.name, this.area, this.height, this.shape, this.time);
 	}
 	String detail() {
-		return String.format("Æ² ÀÌ¸§: %s\n¸ğ¾ç: %s\n³ĞÀÌ: %.2f\n³ôÀÌ: %.2f\nÃÖ´ë ³Êºñ: %.2f\nÇÊ¿ä ½Ã°£: %.2fºĞ\n",
+		return String.format("í‹€ ì´ë¦„: %s\nëª¨ì–‘: %s\në„“ì´: %.2f\në†’ì´: %.2f\nìµœëŒ€ ë„ˆë¹„: %.2f\ní•„ìš” ì‹œê°„: %.2fë¶„\n",
 				this.name, this.shape, this.area, this.height, this.width, this.time);
 
 	}
@@ -220,33 +220,33 @@ class Cake extends Item {
 		this.update();
 		if (this.is_complete) {
 			if (this.is_green) {
-				return String.format("%s - %s/%s/%s (%d¿ø, %.2fKcal, %dºĞ ÇÊ¿ä, Ä£È¯°æ)",
+				return String.format("%s - %s/%s/%s (%dì›, %.2fKcal, %dë¶„ í•„ìš”, ì¹œí™˜ê²½)",
 						this.name, this.base.get_name(), this.cream.get_name(), this.mold.get_name(), this.price, this.kcal, this.time);
 			} else {
-				return String.format("%s - %s/%s/%s (%d¿ø, %.2fKcal, %dºĞ ÇÊ¿ä)",
+				return String.format("%s - %s/%s/%s (%dì›, %.2fKcal, %dë¶„ í•„ìš”)",
 						this.name, this.base.get_name(), this.cream.get_name(), this.mold.get_name(), this.price, this.kcal, this.time);
 			}
 		} else {
-			return "_(À¯È¿ÇÏÁö ¾ÊÀ½)_";
+			return "_(ìœ íš¨í•˜ì§€ ì•ŠìŒ)_";
 		}
 	}
 	String detail() {
 		this.update();
 		if (this.is_complete) {
-			String output = String.format("ÀÌ¸§: %s\n¹ÙÅÁ: %s\nÅ©¸²: %s\nÆ²: %s\n",
+			String output = String.format("ì´ë¦„: %s\në°”íƒ•: %s\ní¬ë¦¼: %s\ní‹€: %s\n",
 					this.name, this.base.get_name(), this.cream.get_name(), this.mold.get_name());
 			for (int i=0; i<this.decoration.size(); i++) {
-				output += String.format("Àå½Ä%d: %s\n", i+1, this.decoration.get(i).get_name());
+				output += String.format("ì¥ì‹%d: %s\n", i+1, this.decoration.get(i).get_name());
 			}
-			output += String.format("°¡°İ: %d¿ø\n¿­·®: %.2fKcal\nÇÊ¿ä ½Ã°£: %dºĞ\n", this.price, this.kcal, this.time);
+			output += String.format("ê°€ê²©: %dì›\nì—´ëŸ‰: %.2fKcal\ní•„ìš” ì‹œê°„: %dë¶„\n", this.price, this.kcal, this.time);
 			if (this.is_green) {
-				output += String.format("Ä£È¯°æ: ¿¹\n");
+				output += String.format("ì¹œí™˜ê²½: ì˜ˆ\n");
 			} else {
-				output += String.format("Ä£È¯°æ: ¾Æ´Ï¿À\n");
+				output += String.format("ì¹œí™˜ê²½: ì•„ë‹ˆì˜¤\n");
 			}
 			return output;
 		} else {
-			return "_(À¯È¿ÇÏÁö ¾ÊÀ½)_\n";
+			return "_(ìœ íš¨í•˜ì§€ ì•ŠìŒ)_\n";
 		}
 		
 	}
