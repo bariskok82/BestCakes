@@ -13,7 +13,7 @@ class Service {
 	private String input2;
 	
 	Service() {
-		this.sc = new Scanner(System.in);
+		this.sc = new Scanner(System.in, "euc-kr");
 		this.ingredient_list = new ArrayList<Item>();
 		this.mold_list = new ArrayList<Item>();
 		this.preset_list = new ArrayList<Item>();
@@ -43,8 +43,8 @@ class Service {
 		}
 	}
 	void main_menu() {
-		System.out.printf("<¸ŞÀÎ ¸Ş´º>\n");
-		System.out.printf("1: Àç·á ÁØºñ\n2: µµ±¸ ÁØºñ\n3: Á¦¾È ÁØºñ\n4: ÁÖ¹® ¹Ş±â\n5: Á¾·á\n¸Ş´º¸¦ ¼±ÅÃÇÏ¼¼¿ä: ");
+		System.out.printf("<ë©”ì¸ ë©”ë‰´>\n");
+		System.out.printf("1: ì¬ë£Œ ì¤€ë¹„\n2: ë„êµ¬ ì¤€ë¹„\n3: ì œì•ˆ ì¤€ë¹„\n4: ì£¼ë¬¸ ë°›ê¸°\n5: ì¢…ë£Œ\në©”ë‰´ë¥¼ ì„ íƒí•˜ì„¸ìš”: ");
 		this.input1 = this.sc.nextLine();
 		System.out.printf("\n");
 		if (this.input1.equals("1")) {
@@ -65,16 +65,16 @@ class Service {
 	}
 	String menu_name() {
 		if (Math.floor(this.state/10) == 1) {
-			return "Àç·á";
+			return "ì¬ë£Œ";
 		}
 		if (Math.floor(this.state/10) == 2) {
-			return "µµ±¸";
+			return "ë„êµ¬";
 		}
 		if (Math.floor(this.state/10) == 3) {
-			return "Á¦¾È";
+			return "ì œì•ˆ";
 		}
 		if (Math.floor(this.state/10) == 4) {
-			return "ÁÖ¹®";
+			return "ì£¼ë¬¸";
 		}
 		return "";
 	}
@@ -97,11 +97,11 @@ class Service {
 		if (!(this.state == 10 || this.state == 20 || this.state == 30 || this.state == 40)) {
 			return;
 		}
-		System.out.printf("<%s ¸ñ·Ï>\n", this.menu_name());
+		System.out.printf("<%s ëª©ë¡>\n", this.menu_name());
 		for (int i=0; i<this.current_list().size(); i++) {
 			System.out.printf("%2d. %s\n", i+1, this.current_list().get(i).info());
 		}
-		System.out.printf("\n<¹øÈ£: Á¶È¸> <A: Ãß°¡> <B: µÚ·Î>: ");
+		System.out.printf("\n<ë²ˆí˜¸: ì¡°íšŒ> <A: ì¶”ê°€> <B: ë’¤ë¡œ>: ");
 		this.input1 = this.sc.nextLine();
 		System.out.printf("\n");
 		if (this.input1.matches("\\d+")) {
@@ -119,55 +119,55 @@ class Service {
 		if (!(this.state == 11 || this.state == 21 || this.state == 31 || this.state == 41)) {
 			return;
 		}
-		System.out.printf("<%s Á¤º¸>\n", this.menu_name());
+		System.out.printf("<%s ì •ë³´>\n", this.menu_name());
 		int index = Integer.parseInt(this.input1) - 1;
 		System.out.printf(this.current_list().get(index).detail());
 		if (this.state == 11) {
-			System.out.printf("\n<A: ÁÖ¹®> <X: »èÁ¦> <B: µÚ·Î>: ");
+			System.out.printf("\n<A: ì£¼ë¬¸> <X: ì‚­ì œ> <B: ë’¤ë¡œ>: ");
 		}
 		if (this.state == 21) {
-			System.out.printf("\n<A: ±³Ã¼> <X: »èÁ¦> <B: µÚ·Î>: ");
+			System.out.printf("\n<A: êµì²´> <X: ì‚­ì œ> <B: ë’¤ë¡œ>: ");
 		}
 		if (this.state == 31) {
-			System.out.printf("\n<X: »èÁ¦> <B: µÚ·Î>: ");
+			System.out.printf("\n<X: ì‚­ì œ> <B: ë’¤ë¡œ>: ");
 		}
 		if (this.state == 41) {
-			System.out.printf("\n<A: Ã³¸®> <X: »èÁ¦> <B: µÚ·Î>: ");
+			System.out.printf("\n<A: ì²˜ë¦¬> <X: ì‚­ì œ> <B: ë’¤ë¡œ>: ");
 		}
 		this.input1 = this.sc.nextLine();
 		System.out.printf("\n");
 		if (this.input1.equals("A") || this.input1.equals("a")) {
 			if (this.state == 11) {
-				System.out.printf("ÁÖ¹®ÇÒ ¼ö·®À» ÀÔ·ÂÇÏ¼¼¿ä. <¼ıÀÚ: ¼ö·®> <B: Ãë¼Ò>: ");
+				System.out.printf("ì£¼ë¬¸í•  ìˆ˜ëŸ‰ì„ ì…ë ¥í•˜ì„¸ìš”. <ìˆ«ì: ìˆ˜ëŸ‰> <B: ì·¨ì†Œ>: ");
 				this.input2 = this.sc.nextLine();
 				if (this.input2.matches("\\d+")) {
-					System.out.printf("Àç·á¸¦ ÁÖ¹®ÇÏ¿´½À´Ï´Ù.\n");
+					System.out.printf("ì¬ë£Œë¥¼ ì£¼ë¬¸í•˜ì˜€ìŠµë‹ˆë‹¤.\n");
 				}
 				System.out.printf("\n");
 			}
 			if (this.state == 21) {
-				System.out.printf("µµ±¸¸¦ ±³Ã¼ÇÏ½Ã°Ú½À´Ï±î? <Y: ¿¹> <N: ¾Æ´Ï¿À>: ");
+				System.out.printf("ë„êµ¬ë¥¼ êµì²´í•˜ì‹œê² ìŠµë‹ˆê¹Œ? <Y: ì˜ˆ> <N: ì•„ë‹ˆì˜¤>: ");
 				this.input2 = this.sc.nextLine();
 				if (this.input2 == "Y") {
-					System.out.printf("µµ±¸¸¦ ±³Ã¼ÇÏ¿´½À´Ï´Ù.\n");
+					System.out.printf("ë„êµ¬ë¥¼ êµì²´í•˜ì˜€ìŠµë‹ˆë‹¤.\n");
 				}
 				System.out.printf("\n");
 			}
 			if (this.state == 41) {
-				System.out.printf("ÁÖ¹®À» Ã³¸®ÇÏ½Ã°Ú½À´Ï±î? <Y: ¿¹> <N: ¾Æ´Ï¿À>: ");
+				System.out.printf("ì£¼ë¬¸ì„ ì²˜ë¦¬í•˜ì‹œê² ìŠµë‹ˆê¹Œ? <Y: ì˜ˆ> <N: ì•„ë‹ˆì˜¤>: ");
 				this.input2 = this.sc.nextLine();
 				if (this.input2 == "Y") {
-					System.out.printf("ÁÖ¹®À» Ã³¸®ÇÏ¿´½À´Ï´Ù.\n");
+					System.out.printf("ì£¼ë¬¸ì„ ì²˜ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.\n");
 				}
 				System.out.printf("\n");
 			}
 		}
 		if (this.input1.equals("X") || this.input1.equals("x")) {
-			System.out.printf("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î? <Y: ¿¹> <N: ¾Æ´Ï¿À>: ");
+			System.out.printf("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ? <Y: ì˜ˆ> <N: ì•„ë‹ˆì˜¤>: ");
 			this.input2 = this.sc.nextLine();
 			if (this.input2.equals("Y") || this.input2.equals("y")) {
 				this.current_list().remove(index);
-				System.out.printf("»èÁ¦ÇÏ¿´½À´Ï´Ù.\n");
+				System.out.printf("ì‚­ì œí•˜ì˜€ìŠµë‹ˆë‹¤.\n");
 			}
 			System.out.printf("\n");
 		}
@@ -177,29 +177,29 @@ class Service {
 		if (!(this.state == 12 || this.state == 22 || this.state == 32 || this.state == 42)) {
 			return;
 		}
-		System.out.printf("<%s Ãß°¡>\n", this.menu_name());
+		System.out.printf("<%s ì¶”ê°€>\n", this.menu_name());
 		if (this.state == 12) {
-			System.out.printf("ÀÌ¸§: ");
+			System.out.printf("ì´ë¦„: ");
 			this.input2 = this.sc.nextLine();
 			String name = this.input2;
 			
-			System.out.printf("ÄÚµå: ");
+			System.out.printf("ì½”ë“œ: ");
 			this.input2 = this.sc.nextLine();
 			String code = this.input2;
 			
-			System.out.printf("´ÜÀ§ °¡°İ (¿ø): ");
+			System.out.printf("ë‹¨ìœ„ ê°€ê²© (ì›): ");
 			this.input2 = this.sc.nextLine();
 			double price = Double.parseDouble(this.input2);
 			
-			System.out.printf("´ÜÀ§ ¿­·® (Kcal): ");
+			System.out.printf("ë‹¨ìœ„ ì—´ëŸ‰ (Kcal): ");
 			this.input2 = this.sc.nextLine();
 			double kcal = Double.parseDouble(this.input2);
 			
-			System.out.printf("ÇÊ¿ä ½Ã°£ (¹è¼ö): ");
+			System.out.printf("í•„ìš” ì‹œê°„ (ë°°ìˆ˜): ");
 			this.input2 = this.sc.nextLine();
 			double multiplier = Double.parseDouble(this.input2);
 			
-			System.out.printf("Ä£È¯°æ ¿©ºÎ <Y: ¿¹> <N: ¾Æ´Ï¿À>: ");
+			System.out.printf("ì¹œí™˜ê²½ ì—¬ë¶€ <Y: ì˜ˆ> <N: ì•„ë‹ˆì˜¤>: ");
 			this.input2 = this.sc.nextLine();
 			boolean isgreen = false;
 			if (this.input2.equals("Y") || this.input2.equals("y")) {
@@ -207,39 +207,39 @@ class Service {
 			}
 			
 			this.current_list().add(new Ingredient(name, code, price, kcal, multiplier, isgreen));
-			System.out.printf("Àç·á¸¦ Ãß°¡ÇÏ¿´½À´Ï´Ù.\n\n");
+			System.out.printf("ì¬ë£Œë¥¼ ì¶”ê°€í•˜ì˜€ìŠµë‹ˆë‹¤.\n\n");
 		}
 		if (this.state == 22) {
-			System.out.printf("ÀÌ¸§: ");
+			System.out.printf("ì´ë¦„: ");
 			this.input2 = this.sc.nextLine();
 			String name = this.input2;
 			
-			System.out.printf("ÄÚµå: ");
+			System.out.printf("ì½”ë“œ: ");
 			this.input2 = this.sc.nextLine();
 			String code = this.input2;
 			
-			System.out.printf("¸ğ¾ç: ");
+			System.out.printf("ëª¨ì–‘: ");
 			this.input2 = this.sc.nextLine();
 			String shape = this.input2;
 			
-			System.out.printf("³ĞÀÌ: ");
+			System.out.printf("ë„“ì´: ");
 			this.input2 = this.sc.nextLine();
 			double area = Double.parseDouble(this.input2);
 			
-			System.out.printf("³ôÀÌ: ");
+			System.out.printf("ë†’ì´: ");
 			this.input2 = this.sc.nextLine();
 			double height = Double.parseDouble(this.input2);
 			
-			System.out.printf("ÃÖ´ë ³Êºñ: ");
+			System.out.printf("ìµœëŒ€ ë„ˆë¹„: ");
 			this.input2 = this.sc.nextLine();
 			double width = Double.parseDouble(this.input2);
 			
-			System.out.printf("ÇÊ¿ä ½Ã°£ (ºĞ): ");
+			System.out.printf("í•„ìš” ì‹œê°„ (ë¶„): ");
 			this.input2 = this.sc.nextLine();
 			double time = Double.parseDouble(this.input2);
 			
 			this.current_list().add(new Mold(name, code, shape, area, height, width, time));
-			System.out.printf("µµ±¸¸¦ Ãß°¡ÇÏ¿´½À´Ï´Ù.\n\n");
+			System.out.printf("ë„êµ¬ë¥¼ ì¶”ê°€í•˜ì˜€ìŠµë‹ˆë‹¤.\n\n");
 		}
 		if (this.state == 32) {
 			Cake cake = new Cake();
@@ -247,7 +247,7 @@ class Service {
 			for (int i=0; i<this.mold_list.size(); i++) {
 				System.out.printf("%2d. %s\n", i+1, this.mold_list.get(i).info());
 			}
-			System.out.printf("Æ² <¹øÈ£: ¼±ÅÃ>: ");
+			System.out.printf("í‹€ <ë²ˆí˜¸: ì„ íƒ>: ");
 			this.input2 = this.sc.nextLine();
 			System.out.printf("\n");
 			cake.select_mold((Mold)this.mold_list.get(Integer.parseInt(this.input2)-1));
@@ -255,7 +255,7 @@ class Service {
 			for (int i=0; i<this.ingredient_list.size(); i++) {
 				System.out.printf("%2d. %s\n", i+1, this.ingredient_list.get(i).info());
 			}
-			System.out.printf("º£ÀÌ½º <¹øÈ£: ¼±ÅÃ>: ");
+			System.out.printf("ë² ì´ìŠ¤ <ë²ˆí˜¸: ì„ íƒ>: ");
 			this.input2 = this.sc.nextLine();
 			System.out.printf("\n");
 			cake.select_base((Ingredient)this.ingredient_list.get(Integer.parseInt(this.input2)-1));
@@ -263,7 +263,7 @@ class Service {
 			for (int i=0; i<this.ingredient_list.size(); i++) {
 				System.out.printf("%2d. %s\n", i+1, this.ingredient_list.get(i).info());
 			}
-			System.out.printf("Å©¸² <¹øÈ£: ¼±ÅÃ>: ");
+			System.out.printf("í¬ë¦¼ <ë²ˆí˜¸: ì„ íƒ>: ");
 			this.input2 = this.sc.nextLine();
 			System.out.printf("\n");
 			cake.select_cream((Ingredient)this.ingredient_list.get(Integer.parseInt(this.input2)-1));
@@ -272,7 +272,7 @@ class Service {
 				for (int i=0; i<this.ingredient_list.size(); i++) {
 					System.out.printf("%2d. %s\n", i+1, this.ingredient_list.get(i).info());
 				}
-				System.out.printf("Àå½Ä <¹øÈ£: ¼±ÅÃ> <A: ¿Ï·á>: ");
+				System.out.printf("ì¥ì‹ <ë²ˆí˜¸: ì„ íƒ> <A: ì™„ë£Œ>: ");
 				this.input2 = this.sc.nextLine();
 				System.out.printf("\n");
 				if (!this.input2.matches("\\d+")) {
@@ -281,13 +281,13 @@ class Service {
 				cake.add_decoration((Ingredient)this.ingredient_list.get(Integer.parseInt(this.input2)-1));
 			}
 			
-			System.out.printf("ÀÌ¸§: ");
+			System.out.printf("ì´ë¦„: ");
 			this.input2 = this.sc.nextLine();
 			System.out.printf("\n");
 			cake.change_name(this.input2);
 			
 			this.current_list().add(cake);
-			System.out.printf("Á¦¾ÈÀ» Ãß°¡ÇÏ¿´½À´Ï´Ù.\n\n");
+			System.out.printf("ì œì•ˆì„ ì¶”ê°€í•˜ì˜€ìŠµë‹ˆë‹¤.\n\n");
 		}
 		if (this.state == 42) {
 			Cake cake = new Cake();
@@ -295,7 +295,7 @@ class Service {
 			for (int i=0; i<this.mold_list.size(); i++) {
 				System.out.printf("%2d. %s\n", i+1, this.mold_list.get(i).info());
 			}
-			System.out.printf("Æ² <¹øÈ£: ¼±ÅÃ>: ");
+			System.out.printf("í‹€ <ë²ˆí˜¸: ì„ íƒ>: ");
 			this.input2 = this.sc.nextLine();
 			System.out.printf("\n");
 			cake.select_mold((Mold)this.mold_list.get(Integer.parseInt(this.input2)-1));
@@ -303,7 +303,7 @@ class Service {
 			for (int i=0; i<this.ingredient_list.size(); i++) {
 				System.out.printf("%2d. %s\n", i+1, this.ingredient_list.get(i).info());
 			}
-			System.out.printf("º£ÀÌ½º <¹øÈ£: ¼±ÅÃ>: ");
+			System.out.printf("ë² ì´ìŠ¤ <ë²ˆí˜¸: ì„ íƒ>: ");
 			this.input2 = this.sc.nextLine();
 			System.out.printf("\n");
 			cake.select_base((Ingredient)this.ingredient_list.get(Integer.parseInt(this.input2)-1));
@@ -311,7 +311,7 @@ class Service {
 			for (int i=0; i<this.ingredient_list.size(); i++) {
 				System.out.printf("%2d. %s\n", i+1, this.ingredient_list.get(i).info());
 			}
-			System.out.printf("Å©¸² <¹øÈ£: ¼±ÅÃ>: ");
+			System.out.printf("í¬ë¦¼ <ë²ˆí˜¸: ì„ íƒ>: ");
 			this.input2 = this.sc.nextLine();
 			System.out.printf("\n");
 			cake.select_cream((Ingredient)this.ingredient_list.get(Integer.parseInt(this.input2)-1));
@@ -320,7 +320,7 @@ class Service {
 				for (int i=0; i<this.ingredient_list.size(); i++) {
 					System.out.printf("%2d. %s\n", i+1, this.ingredient_list.get(i).info());
 				}
-				System.out.printf("Àå½Ä <¹øÈ£: ¼±ÅÃ> <A: ¿Ï·á>: ");
+				System.out.printf("ì¥ì‹ <ë²ˆí˜¸: ì„ íƒ> <A: ì™„ë£Œ>: ");
 				this.input2 = this.sc.nextLine();
 				System.out.printf("\n");
 				if (!this.input2.matches("\\d+")) {
@@ -329,13 +329,13 @@ class Service {
 				cake.add_decoration((Ingredient)this.ingredient_list.get(Integer.parseInt(this.input2)-1));
 			}
 			
-			System.out.printf("ÀÌ¸§: ");
+			System.out.printf("ì´ë¦„: ");
 			this.input2 = this.sc.nextLine();
 			System.out.printf("\n");
 			cake.change_name(this.input2);
 			
 			this.current_list().add(cake);
-			System.out.printf("ÁÖ¹®À» Ãß°¡ÇÏ¿´½À´Ï´Ù.\n\n");
+			System.out.printf("ì£¼ë¬¸ì„ ì¶”ê°€í•˜ì˜€ìŠµë‹ˆë‹¤.\n\n");
 		}
 		this.state = this.state - 2;
 	}
